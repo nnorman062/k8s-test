@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-1
+spec:
+  capacity:
+    storage: 30Gi # This size is used to match a volume to a tenents claim
+  accessModes:
+    - ReadWriteMany # Access modes are defined below
+  nfs:
+    server: 10.100.0.11 # Please change this to your NFS server
+    path: /mnt/k8s-store # Please change this to the relevant share
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-1
+  namespace: default
+spec:
+  volumeName: pv-1
+  accessModes:
+    - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+  resources:
+    requests:
+      storage: 30Gi # volume size requested

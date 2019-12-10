@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fruit-ingress
+  namespace: cafe
+spec:
+  tls:
+  - hosts:
+    - test.nnorman.tech
+    secretName: fruit-secret
+  rules:
+  - host: "test.nnorman.tech"
+    http:
+      paths:
+      - path: /ringo
+        backend:
+          serviceName: ringo-svc
+          servicePort: 80
+      - path: /ichigo
+        backend:
+          serviceName: ichigo-svc
+          servicePort: 80

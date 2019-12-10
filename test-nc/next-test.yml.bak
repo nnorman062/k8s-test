@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud-app
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: nextcloud
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+    spec:
+      containers:
+      - name: nextcloud
+        image: nextcloud:latest

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: next-ingress
+  namespace: test
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: "test.nnorman.tech"
+    http:
+      paths:
+        - path: /nc
+          backend:
+            serviceName: nextcloud-service
+            servicePort: 80
