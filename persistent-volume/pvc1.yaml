@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-1
+  namespace: default
+spec:
+  volumeName: pv-1
+  accessModes:
+    - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+  resources:
+    requests:
+      storage: 30Gi # volume size requested
