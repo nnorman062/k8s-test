@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gluster-busy-pod
+  labels:
+    name: gluster-busy-pod  
+spec:
+  containers:
+  - name: gluster-busy-pod
+    image: busybox       
+    volumeMounts:
+    - name: gluster-vol3
+      mountPath: /usr/share/busybox
+      readOnly: false
+  volumes:
+  - name: gluster-vol3 
+    persistentVolumeClaim:
+      claimName: gluster-pvc

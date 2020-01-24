@@ -23,7 +23,7 @@
         "containers": [
           {
             "name": "gluster",
-            "image": "gluster/gluster-centos",
+            "image": "gluster/gluster-centos:gluster4u0_centos7",
             "livenessProbe": {
               "exec": {
                 "command": [
