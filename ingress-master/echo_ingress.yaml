@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    #choose one of the following
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"           
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+spec:
+  tls:
+  - hosts:
+    - echo1.nnorman.tech
+    - echo2.nnorman.tech
+    secretName: echo-tls
+  rules:
+  - host: echo1.nnorman.tech
+    http:
+      paths:
+      - backend:
+          serviceName: echo1
+          servicePort: 80
+  - host: echo2.nnorman.tech
+    http:
+      paths:
+      - backend:
+          serviceName: echo2
+          servicePort: 80
